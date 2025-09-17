@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment RasyaXD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            transform: translateZ(20px);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            color: #ccc;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .payment-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .payment-card:hover {
+            transform: translateZ(10px) rotateX(5deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .payment-card h3 {
+            margin-bottom: 15px;
+            color: #ff8a00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dana-info, .qris-info {
+            margin: 15px 0;
+        }
+
+        .dana-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #00d3f9, #0288d1);
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            display: inline-block;
+            transform: translateZ(10px);
+            box-shadow: 0 5px 15px rgba(0, 211, 249, 0.3);
+        }
+
+        .qris-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin: 10px auto;
+            overflow: hidden;
+            transform: translateZ(15px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .qris-image:hover {
+            transform: translateZ(25px) scale(1.05);
+        }
+
+        .qris-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transform-style: preserve-3d;
+            transform: translateZ(5px);
+        }
+
+        .btn:hover {
+            transform: translateZ(10px) translateY(-3px);
+        }
+
+        .btn-copy {
+            background: linear-gradient(45deg, #00d3f9, #0288d1);
+            color: white;
+        }
+
+        .btn-channel {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+        }
+
+        .btn-copy:hover {
+            background: linear-gradient(45deg, #0288d1, #00d3f9);
+            box-shadow: 0 5px 15px rgba(0, 211, 249, 0.4);
+        }
+
+        .btn-channel:hover {
+            background: linear-gradient(45deg, #128C7E, #25D366);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .channel-info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(37, 211, 102, 0.1);
+            border-radius: 15px;
+            transform: translateZ(10px);
+        }
+
+        .channel-info h3 {
+            margin-bottom: 10px;
+            color: #25D366;
+        }
+
+        .channel-info p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotateX(0);
+            }
+            50% {
+                transform: translateY(-10px) rotateX(5deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .payment-options {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-card {
+                width: 100%;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1><i class="fas fa-money-bill-wave"></i> Payment Gateway</h1>
+                <p>Pilih metode pembayaran yang Anda inginkan</p>
+            </div>
+            
+            <div class="payment-options">
+                <div class="payment-card">
+                    <h3><i class="fas fa-mobile-alt"></i> DANA</h3>
+                    <p>Transfer ke nomor DANA berikut:</p>
+                    <div class="dana-info">
+                        <div class="dana-number">082285929576</div>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-copy" onclick="copyDANA()">
+                            <i class="fas fa-copy"></i> Salin Nomor
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="payment-card">
+                    <h3><i class="fas fa-qrcode"></i> QRIS</h3>
+                    <p>Scan QR code berikut untuk pembayaran:</p>
+                    <div class="qris-info">
+                        <div class="qris-image">
+                            <img src="https://files.catbox.moe/e4qpsa.jpeg" alt="QRIS Payment">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="channel-info">
+                <h3><i class="fab fa-whatsapp"></i> Saluran WhatsApp</h3>
+                <p>Bergabunglah dengan saluran WhatsApp kami untuk informasi terbaru dan promo spesial!</p>
+                <a href="https://whatsapp.com/channel/0029Vb8Ahsm2phHR7AkyIx2O" target="_blank">
+                    <button class="btn btn-channel">
+                        <i class="fab fa-whatsapp"></i> Join Channel
+                    </button>
+                </a>
+            </div>
+            
+            <div class="footer">
+                <p>&copy; 2023 Payment Gateway. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyDANA() {
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = "082285929576";
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            
+            alert("Nomor DANA telah disalin: 082285929576");
+        }
+    </script>
+</body>
+</html>
